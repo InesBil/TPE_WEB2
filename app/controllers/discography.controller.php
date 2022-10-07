@@ -12,12 +12,12 @@ class DiscographyController {
     }
 
     public function showDiscography() {
-        $beers = $this->model->getAllDiscography();
-        $this->view->showDiscography($discography);
+        $albums = $this->model->getAllDiscography();
+        $this->view->showDiscography($albums);
     }
 
     
-     function addDiscography() {
+     /*function addDiscography() {
          // TODO: validar entrada de datos
 
          $title = $_POST['title'];
@@ -27,7 +27,7 @@ class DiscographyController {
          $id = $this->model->insertTask($title, $description, $priority);
 
          header("Location: " . BASE_URL); 
-     }
+     }*/
    
      function deleteDiscography($id) {
          $this->model->deleteDiscographyById($id);
