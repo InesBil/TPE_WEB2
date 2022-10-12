@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.2.1, created on 2022-10-06 16:17:30
+/* Smarty version 4.2.1, created on 2022-10-13 01:03:45
   from 'C:\xampp\htdocs\WEB2\TPE\templates\discographyView.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.2.1',
-  'unifunc' => 'content_633ee37ab4c907_14235485',
+  'unifunc' => 'content_634747d1118683_93983368',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6788054ce26a1827f2721421408889828ae14d8b' => 
     array (
       0 => 'C:\\xampp\\htdocs\\WEB2\\TPE\\templates\\discographyView.tpl',
-      1 => 1665065787,
+      1 => 1665615817,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_633ee37ab4c907_14235485 (Smarty_Internal_Template $_smarty_tpl) {
+function content_634747d1118683_93983368 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -43,8 +43,11 @@ $_smarty_tpl->tpl_vars['album']->do_else = false;
  - <?php echo $_smarty_tpl->tpl_vars['album']->value->genre;?>
  - <?php echo $_smarty_tpl->tpl_vars['album']->value->length;?>
  </span>
-  <a href='delete/<?php echo $_smarty_tpl->tpl_vars['album']->value->id;?>
-' type='button' class='btn btn-danger ml-auto'>Borrar</a></li>
+  <a href='showEditAlbum/<?php echo $_smarty_tpl->tpl_vars['beer']->value->id;?>
+' type='button' class='btn btn-danger ml-auto'>Editar</a>
+  <a href='deleteAlbum/<?php echo $_smarty_tpl->tpl_vars['album']->value->id;?>
+' type='button' class='btn btn-danger ml-auto'>Borrar</a>
+  </li>
    <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
