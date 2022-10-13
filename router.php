@@ -21,12 +21,12 @@ switch ($params[0]) {
       break;
     case 'showDiscography':
       $discographyController = new DiscographyController();
-       $discographyController->showDiscography();
-       break;
+      $discographyController->showDiscography();
+      break;
    //case 'records':
      // break;          
    case 'addAlbum':
-      $discographyController = new   DiscographyController();
+      $discographyController = new DiscographyController();
       $discographyController->addAlbum();
       break;
     /*case 'delete':

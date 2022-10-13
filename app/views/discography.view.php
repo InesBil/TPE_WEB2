@@ -7,12 +7,10 @@ class DiscographyView {
     public function __construct() {
         $this->smarty = new Smarty(); // inicializo Smarty
     }
-    function showDiscography($albums) {
+    function showDiscography($albums, $records) {
        // asigno variables al tpl smarty
-        $this->smarty->assign('count', count($albums)); 
+        $this->smarty->assign('records', $records);  
         $this->smarty->assign('albums',$albums);
-
-        // mostrar el tpl
         $this->smarty->display('discographyView.tpl');
     }
 } 

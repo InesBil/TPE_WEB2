@@ -1,12 +1,13 @@
 <form action="addAlbum" method="POST" class="my-4" enctype="multipart/form-data">
 <div class="mb-3">
-<label class="form-label">Seleccione una opcion:</label>
+<label class="form-label">Seleccione una discográfica:</label>
 <select name="studioOption" class="form-control">
-{foreach from=$studios item=$studio }
-  <option value="{$album->id_name_fk}">{$beer->beer_name}</option> 
+{foreach from=$records item=$record }
+  <option value="{$record->id_records_fk}">{$record->records}</option> 
 {/foreach}
 </select> 
 </div>
+
 <div class="mb-3">
   <label for="album" class="form-label">Nombre del album</label>
   <input type="text" class="form-control"  name="album">

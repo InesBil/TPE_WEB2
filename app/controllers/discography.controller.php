@@ -5,7 +5,7 @@ require_once './app/views/discography.view.php';
 class DiscographyController {
     private $model;
     private $view;
-    private $modelRecord;
+    private $modelRecord; //para vincular los modelos de las dos tablas
 
     public function __construct() {
         $this->model = new DiscographyModel();
@@ -14,19 +14,28 @@ class DiscographyController {
     }
 
     public function showDiscography() {
+        //obtiene las tareas del modelo
         $albums = $this->model->getAllDiscography();
-        $this->view->showDiscography($albums);
+        $modelRecord = $this->modelRecord->getAllRecords();
+        //actualizo la vista
+        $this->view->showDiscography($albums, $modelRecord);
     }
-
     
     function addAlbum() {
          // TODO: validar entrada de datos
+         $album = $_POST['album'];
+         $year = $_POST['year'];
+         $genre = $_POST['genre'];
+         $length = $_POST['length'];
 
-         $title = $_POST['title'];
-         $description = $_POST['description'];
-         $priority = $_POST['priority'];
-
-         //$id = $this->model->insertTask($title, $description, $priority);
+         if ($_FILES['input_name']['type'] =="image/jpg" ||
+            $_FILES['input_name']['type'] =="image/jpeg"||
+            $_FILES['input_name']['type'] =="image/png" ){
+            $this->model->insertAlbum($album, $year, $genre, $length, $_FILES['input_name']['tmp_name']);
+            }
+            else{
+                $id = $this->model->insertAlbum($album, $year, $genre, $length);
+            }
 
          header("Location: " . BASE_URL); 
     }

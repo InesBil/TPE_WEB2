@@ -3,7 +3,6 @@
 class DiscographyModel {
 
     private $db;
-
     public function __construct() {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_discography;charset=utf8', 'root', '');       
     }
@@ -14,7 +13,6 @@ class DiscographyModel {
     public function getAllDiscography() {
         // 1. abro conexión a la DB
         // ya esta abierta por el constructor de la clase
-
         // 2. ejecuto la sentencia (2 subpasos)
         $query = $this->db->prepare("SELECT * FROM albums");
         $query->execute();
@@ -25,15 +23,33 @@ class DiscographyModel {
         return $albums;
     }
 
+    function getRegisterAlbumById($id){
+        $query = $this->db->prepare("SELECT * FROM albums where `id`=$id");
+        $query->execute();
+        $albumRegister = $query->fetchAll(PDO::FETCH_OBJ);
+        return $albumRegister;
+    }
+
      /**
       * Inserta una tarea en la base de datos.
       */
-     /*public function insertDiscography($type, $container, $stock, $price) {
-        $query = $this->db->prepare("INSERT INTO beerSale (type, container, stock, price) VALUES (?, ?, ?, ?)");
-         $query->execute([$id, $fk_id_name, $type, $container, $stock, $price]);
-         
+     public function insertAlbum($album, $year, $genre, $length, $imagen=null ) {
+        $pathImg = null;
+        if ($imagen)
+        $pathImg = $this->uploadImage($imagen);
+
+        $query = $this->db->prepare("INSERT INTO albums (album, year, genre, length) VALUES (?, ?, ?,?, ?)");
+        $query->execute([$album, $year, $genre, $length, $pathImg]);
+        
+        header("Location: " . BASE_URL . 'album');         
          return $this->db->lastInsertId();
-     }*/
+     }
+
+     private function uploadImage($image){
+        $target = 'images' . uniqid() . '.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
+    }
 
 
      /**
