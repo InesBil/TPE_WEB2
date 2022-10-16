@@ -8,19 +8,52 @@ class RecordModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_discography;charset=utf8', 'root', '');
         
     }
-    public function getAllRecords(){
-        
-        //1. Abro la conexion
-        //$db = $this->connect();
-
-        //2.Enviar la consulta(2 sub pasos: prepare y execte)
+    function getAllRecords(){                
         $query = $this->db->prepare("SELECT * FROM records");
         $query->execute();
 
-        //3. Obtengo la respuesta con un fetchAll(porque)
-        $records = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
-
+        $records = $query->fetchAll(PDO::FETCH_OBJ);
         return $records;
+    }
 
+    public function getRecordsById($id){
+        $query = $this->db->prepare("SELECT `records`FROM `records` WHERE `fk_records_id`= ?");
+        $query->execute([$id]);
+        $records = $query->fetch(PDO::FETCH_OBJ);
+        return $records;
+    }
+
+    function getRegisterRecordsById($id){
+        $query = $this->db->prepare("SELECT * FROM records");
+        $query->execute();
+        $recordsRegister = $query->fetchAll(PDO::FETCH_OBJ);
+        return $recordsRegister;
+    }
+
+    public function getRegisterRecordsById2($id){
+        $query = $this->db->prepare("SELECT * FROM records where `fk_records_id`=$id");
+        $query->execute();
+        $recordsRegister = $query->fetchAll(PDO::FETCH_OBJ);
+        return $recordsRegister;
+    }
+
+    function insertRecords($records, $producer, $studio) {         
+        $query = $this->db->prepare("INSERT INTO records (records,producer, studio) VALUES (?, ?, ?)");
+        $query->execute([$records, $producer, $studio]);        
+        return $this->db->lastInsertId();
+
+        header("Location: " . BASE_URL. 'showRecords');
+    }
+    public function insertEditRecords($records, $producer, $studio, $id){
+        
+        $query = $this->db->prepare("UPDATE `records` SET records=?, producer=?, studio=? WHERE fk_records_id=?");
+        $query->execute([$records, $producer, $studio, $id]);
+        header("Location: " . BASE_URL. 'showRecords');
+    }
+
+     function deleteRecordsById($id) {
+        $query = $this->db->prepare('DELETE FROM records WHERE fk_records_id= ?');
+        $query->execute([$id]);
+        header("Location: " . BASE_URL. 'showRecords');
     }
 }

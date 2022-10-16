@@ -16,15 +16,12 @@
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarColor01">
       {* <img src="images/logo22.png" style="width: 3.5rem;"> *}
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="home">Home</a>
-          </li>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">          
           <li class="nav-item">
             <a class="nav-link" href="showDiscography">Albums</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="showStudio">Discografía</a>
+            <a class="nav-link" href="showRecords">Discografía</a>
           </li>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                <ul class="navbar-nav">
@@ -33,8 +30,8 @@
                      Categoria
                    </a>
                    <ul class="dropdown-menu dropdown-menu-dark">
-                   {foreach from=$studios item=$studio}
-                    <li><a class="dropdown-item" href="filter/{$studio->fk_records_id}">{$studio->records}</a></li>
+                   {foreach from=$records item=$record}
+                    <li><a class="dropdown-item" href="filter/{$record->fk_records_id}">{$record->record}</a></li>
                    {/foreach}
                    </ul>
                  </li>

@@ -13,4 +13,18 @@ class DiscographyView {
         $this->smarty->assign('albums',$albums);
         $this->smarty->display('discographyView.tpl');
     }
+    function showEditAlbums ($album, $records){
+        $this->smarty->assign('records', $records);
+        $this->smarty->assign('albums', $album);
+        $this->smarty->display('showEditAlbums.tpl');
+    }
+    function showDetail($detail){
+        $this->smarty->assign('detail', $detail);
+        $this->smarty->display('showDetail.tpl');
+    }
+
+    function showFilter(){
+       
+        
+    }
 } 

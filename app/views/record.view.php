@@ -5,6 +5,16 @@ class RecordView {
     private $smarty;
 
     public function __construct() {
-        $this->smarty = new Smarty(); // inicializo Smarty
+        $this->smarty = new Smarty();
+    }
+
+    function showRecords($records) {      
+        $this->smarty->assign('records', $records);
+        $this->smarty->display('recordsList.tpl');
+    }
+
+    function showEditRecords($records){
+        $this->smarty->assign('records', $records); 
+        $this->smarty->display('showEditRecords.tpl');
     }
 }

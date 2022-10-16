@@ -9,11 +9,43 @@ class RecordController{
 
    public function __construct(){
     $this->model = new RecordModel();
-    $this->view = new RecordView();
-    
+    $this->view = new RecordView();    
     //$authHelper = new AuthHelper();
     //$authHelper->checkLoggedIn();
+    }
 
+    function showRecords(){        
+        $records = $this->model->getAllRecords();        
+        $this->view->showRecords($records);
+    }
+
+    function addRecords() {   
+        $records = $_POST['records'];
+        $producer = $_POST['producer'];
+        $studio = $_POST['studio'];
+        $this->model->insertRecords($records, $producer, $studio);
+    
+        header("Location: " . BASE_URL . 'showRecords'); 
+    }
+
+    function  showEditRecords($id){
+        $records = $this->model->getRegisterRecordsById2($id);
+        $this->view->showEditRecords($records);
+    }
+
+    function insertEditRecords($id){
+        if((isset($_POST['records'])&&isset($_POST['producer'])&&isset($_POST['studio']))&&!empty($_POST['records'])&&!empty($_POST['producer'])&&!empty($_POST['studio'])){      
+            $records = $_POST['records'];
+            $producer = $_POST['producer'];
+            $studio = $_POST['studio'];
+               
+            $this->model->insertEditRecords($records, $producer, $studio, $id);
+            
+        }
+    }
+    
+    function deleteRecords($id) {
+        $this->model->deleteRecordsById($id);
     }
 
 }
