@@ -1,10 +1,11 @@
+<h5>Añadir nuevo álbum:</h5>
 <form action="addAlbum" method="POST" class="my-4" enctype="multipart/form-data">
 
   <div class="mb-3">
     <label class="form-label">Seleccione una discográfica:</label>
     <select name="id_records_fk" class="form-control">
       {foreach from=$records item=$record }
-        <option value="{$record->id_records_fk}">{$record->records}</option> 
+        <option value="{$record->fk_records_id}">{$record->records}</option> 
       {/foreach}
     </select> 
   </div>

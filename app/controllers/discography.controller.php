@@ -28,50 +28,67 @@ class DiscographyController {
         $this->view->showDetail($detail);
 
     }
-    
     function addAlbum() {
-        if((isset($_POST['album'])&&isset($_POST['year'])&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['id_records_fk']))&&!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['id_records_fk'])){
+        // if ((isset($_POST['album'])&&isset($_POST['year'])&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['id_records_fk']))&&!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['id_records_fk'])){
             $album = $_POST['album'];
             $year = $_POST['year'];
             $genre = $_POST['genre'];
             $length = $_POST['length'];
-            $id_records_fk = $_POST['id_records_fk'];
-
+            $studioOption = $_POST['id_records_fk'];
             if ($_FILES['input_name']['type'] =="image/jpg" ||
                 $_FILES['input_name']['type'] =="image/jpeg"||
                 $_FILES['input_name']['type'] =="image/png" ){
-                $this->model->addAlbum($album, $year, $genre, $length, $id_records_fk, $_FILES['input_name']['tmp_name']);
-                }
+                    $this->model->insertAlbum($album, $year, $genre, $length, $studioOption, $_FILES['input_name']['tmp_name']);
+            }
             else{
-                $id = $this->model->addAlbum($album, $year, $genre, $length, $id_records_fk);
-                }
-            
-            header("Location: " . BASE_URL . 'showDiscography'); 
-        }
+                $this->model->insertAlbum($album, $year, $genre, $length, $studioOption);
+            }
+        //}
+        header("Location: " . BASE_URL);
 
+    }
+    // function addAlbum() {
+    //     if((isset($_POST['album'])&&isset($_POST['year'])&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['id_records_fk']))&&!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['id_records_fk'])){
+    //         $album = $_POST['album'];
+    //         $year = $_POST['year'];
+    //         $genre = $_POST['genre'];
+    //         $length = $_POST['length'];
+    //         $studioOption = $_POST['id_records_fk'];
+    //     }
+
+    //     if ($_FILES['input_name']['type'] =="image/jpg" ||
+    //         $_FILES['input_name']['type'] =="image/jpeg"||
+    //         $_FILES['input_name']['type'] =="image/png" ){
+    //         $this->model->insertAlbum($album, $year, $genre, $length, $studioOption, $_FILES['input_name']['tmp_name']);
+    //     }
+    //     else{
+    //         $this->model->insertAlbum($album, $year, $genre, $length, $studioOption);
+    //     }
         
-    } 
+    //     header("Location: " . BASE_URL . 'showDiscography'); 
+                
+    // }
+     
     function showEditAlbum($id){
-        $album = $this->model->getRegisterAlbumById($id);
-        $records = $this->modelAuthor->getRegisterAuthorById($id);
+        $album = $this->model->getRegisterById($id);
+        $records = $this->modelAuthor->getRegisterById($id);
         $this->view->showEditAlbums($album, $records);
-}
-
+    }
 
     function insertEditAlbum($id){
-        if((isset($_POST['album'])&&isset($_POST['year']))&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['studioOption'])&&!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['studioOption'])){      
+        if((isset($_POST['album'])&&isset($_POST['year']))&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['studioOption'])&&!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['id_records_fk'])){      
             $album = $_POST['album'];
             $year = $_POST['year'];
             $genre = $_POST['genre'];
             $length = $_POST['length'];
-            $fk_records_id = $_POST['studioOption'];
+            $fk_records_id = $_POST['id_records_fk'];
+
             $this->model->insertEditAlbum($album, $year, $genre, $length, $fk_records_id, $id);
         }
     }
     
     function deleteDiscography($id) {
-        $this->model->deleteDiscographyById($id);
-        header("Location: " . BASE_URL);
+        $this->model->deleteDiscographyById($id);       
     }
 
     public function filterCategory($id){

@@ -18,7 +18,7 @@
             <tr>
             <td>
                 {if isset($filter->img)}
-                    <img src="{$filter->img}" alt="{$filter->title}" style="width:4rem;" />
+                    <img src="images/{$filter->img}" alt="{$filter->album}" style="width:4rem;" />
                 {/if}
                 </td>              
                 <td>{$filter->album}</td>

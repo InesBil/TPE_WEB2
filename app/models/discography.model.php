@@ -3,19 +3,20 @@
 class DiscographyModel {
 
     private $db;
+
     public function __construct() {
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=db_discography;charset=utf8', 'root', '');       
+        $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_discography;charset=utf8' , 'root', '');    
     }
 
     public function getAllDiscography() {       
-        $query = $this->db->prepare("SELECT albums.id, albums.album, albums.album, albums.year, albums.genre, albums.length, albums.img, records.fk_records_id, records.records FROM albums INNER JOIN records ON id_records_fk = records.fk_records_id");
+        $query = $this->db->prepare("SELECT albums.id, albums.album, albums.year, albums.genre, albums.length, albums.img, records.fk_records_id, records.records FROM albums INNER JOIN records ON albums.id_records_fk = records.fk_records_id");
         $query->execute();
         
         $albums = $query->fetchAll(PDO::FETCH_OBJ);        
         return $albums;
     }
 
-    function getRegisterAlbumById($id){
+    function getRegisterById($id){
         $query = $this->db->prepare("SELECT * FROM albums where `id`=$id");
         $query->execute();
         $albumRegister = $query->fetchAll(PDO::FETCH_OBJ);
@@ -23,17 +24,15 @@ class DiscographyModel {
         return $albumRegister;
     }
 
-    public function addAlbum($album, $year, $genre, $length, $id_records_fk, $imagen=null ) {
+    public function insertAlbum($album, $year, $genre, $length, $studioOption, $imagen=null){
         $pathImg = null;
-        if ($imagen)
-        $pathImg = $this->uploadImage($imagen);
-
-        $query = $this->db->prepare("INSERT INTO albums (album, year, genre, length, id_records_fk, img) VALUES (?, ?, ?, ?, ?, ?)");
-        $query->execute([$album, $year, $genre, $length, $id_records_fk, $pathImg]);
-        
-        header("Location: " . BASE_URL . 'showDiscography');   
-
-        return $this->db->lastInsertId();
+        if ($imagen){
+            $pathImg = $this-> uploadImage($imagen);
+        }
+        $query = $this->db->prepare("INSERT INTO albums (album, year, genre, length, id_records_fk, img) VALUES (?, ?, ?, ?, ?, ? )");
+        $query->execute([$album, $year, $genre, $length, $studioOption, $pathImg]);
+         
+         return $this->db->lastInsertId();
     }
 
     private function uploadImage($image){
@@ -42,16 +41,18 @@ class DiscographyModel {
         return $target;
     }
 
-    public function insertEditALbum($album, $year, $genre, $length, $id_records_fk, $id){        
+    public function insertEditAlbum($album, $year, $genre, $length, $studioOption, $id){        
         $query = $this->db->prepare("UPDATE `albums` SET album=?, year=?, genre=?, length=?, id_records_fk=? WHERE id=?");
-        $query->execute([$album, $year, $genre, $length, $$id_records_fk, $id]);
+        $query->execute([$album, $year, $genre, $length, $studioOption, $id]);
 
-        header("Location: " . BASE_URL. 'showDiscography');
+        header("Location: " . BASE_URL);
     }
     
      function deleteDiscographyById($id) {
         $query = $this->db->prepare('DELETE FROM albums WHERE id = ?');
          $query->execute([$id]);
+
+         header("Location: " . BASE_URL);
      }
 
     public function getFilter($id){
