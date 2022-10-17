@@ -23,8 +23,11 @@ class DiscographyView {
         $this->smarty->display('showDetail.tpl');
     }
 
-    function showFilter(){
-       
+    function showFilter($filters, $name, $records){
+        $this->smarty->assign('name', $name); 
+        $this->smarty->assign('filters', $filters);
+        $this->smarty->assign('records', $records);
+        $this->smarty->display('filterView.tpl');
         
     }
 } 

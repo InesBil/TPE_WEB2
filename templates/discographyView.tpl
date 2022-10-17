@@ -18,7 +18,7 @@
             <tr>
                 <td> 
                 {if isset ($album->img)}
-                  <img src="{$album->img}" style="width:3rem:"/>
+                  <img src="{$album->img}" style="width:4rem;"/>
                 {/if}
                 </td>
                 <a href="detail/{$album->fk_records_id}">

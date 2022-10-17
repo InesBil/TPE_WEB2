@@ -31,7 +31,7 @@
                    </a>
                    <ul class="dropdown-menu dropdown-menu-dark">
                    {foreach from=$records item=$record}
-                    <li><a class="dropdown-item" href="filter/{$record->fk_records_id}">{$record->record}</a></li>
+                    <li><a class="dropdown-item" href="filter/{$record->fk_records_id}">{$record->records}</a></li>
                    {/foreach}
                    </ul>
                  </li>

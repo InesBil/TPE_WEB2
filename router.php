@@ -14,7 +14,7 @@ if (!empty($_GET['action'])) {
 }
 $params = explode('/', $action);
 
-// tabla de ruteo
+
 switch ($params[0]) {
   case 'showDiscography':
     $discographyController = new DiscographyController();
@@ -78,12 +78,12 @@ switch ($params[0]) {
     case 'logout':
         $authController = new AuthController();
         $authController->logout();
-        break;
+        break; */
     case 'filter':
         $id = $params[1];
-        $homeController = new HomeController();
-        $homeController->filterCategory($id);
-        break;  */
+        $discographyController = new DiscographyController();
+        $discographyController->filterCategory($id);
+        break; 
        
     default:
       echo('404 Page not found');

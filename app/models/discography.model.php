@@ -7,16 +7,11 @@ class DiscographyModel {
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_discography;charset=utf8', 'root', '');       
     }
 
-    public function getAllDiscography() {
-        // 1. abro conexión a la DB
-        // ya esta abierta por el constructor de la clase
-        // 2. ejecuto la sentencia (2 subpasos)
+    public function getAllDiscography() {       
         $query = $this->db->prepare("SELECT albums.id, albums.album, albums.album, albums.year, albums.genre, albums.length, albums.img, records.fk_records_id, records.records FROM albums INNER JOIN records ON id_records_fk = records.fk_records_id");
         $query->execute();
-
-        // 3. obtengo los resultados
-        $albums = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
         
+        $albums = $query->fetchAll(PDO::FETCH_OBJ);        
         return $albums;
     }
 
@@ -61,13 +56,11 @@ class DiscographyModel {
          $query->execute([$id]);
      }
 
-    public function finalize($id) {
-        $query = $this->db->prepare('UPDATE task SET finalizada = 1 WHERE id = ?');
-        $query->execute([$id]);
-         // var_dump($query->errorInfo()); // y eliminar la redireccion
-    }
-    
     public function getFilter($id){
+        $query = $this->db->prepare("SELECT * FROM albums WHERE id_records_fk = ?"); 
+        $query->execute([$id]);
+        $filter = $query->fetchAll(PDO::FETCH_OBJ);
+        return $filter;
         
     }
 }

@@ -16,7 +16,7 @@ class RecordModel {
         return $records;
     }
 
-    public function getRecordsById($id){
+    public function getNameById($id){
         $query = $this->db->prepare("SELECT `records`FROM `records` WHERE `fk_records_id`= ?");
         $query->execute([$id]);
         $records = $query->fetch(PDO::FETCH_OBJ);
