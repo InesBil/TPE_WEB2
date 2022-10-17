@@ -17,11 +17,9 @@
         {foreach from=$albums item=$album}
             <tr>
                 <td>{$album->album}</td>
-                <td>{$album->year>}</td>
+                <td>{$album->year}</td>
                 <td>{$album->genre}</td>
                 <td>{$album->length}</td>                
-                <td><a href='deleteAlbum/{$album->id}' type='button' class='btn btn-danger'>Borrar</a></td>
-                <td><a href='showEdit/{$album->id}' type='button' class='btn btn-danger ml-auto'>Editar</a></td>
             </tr>
         {/foreach}
     </tbody>
@@ -32,21 +30,29 @@
 <form action="editAlbum/{$album->id}" method="POST" class="my-4">
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Seleccione una opcion</label>
-        <select name="studioOption" class="form-control">
+        <select name="id_records_fk" class="form-control">
             {foreach from =$records item=$record}
-                <option value="{$record->id_author}">{$record->name}</option>
+                <option value="{$record->fk_records_id}">{$record->records}</option>
             {/foreach}
         </select>
     </div>
         {foreach from=$albums item=$album}   
     <div class="mb-3">
-        <label for="titulo" class="form-label">Nombre del album</label>
-<input type="text" class="form-control" name="titulo" value="{$book->title}">
+        <label for="album" class="form-label">Nombre del album</label>
+        <input type="text" class="form-control" name="album" value="{$album->album}">
     </div>
     <div class="mb-3">
-        <label for="genero" class="form-label">Año de lanzamiento</label>
-<input type="text" class="form-control" name="genero" value="{$book->genre}">
+        <label for="year" class="form-label">Año de lanzamiento</label>
+        <input type="text" class="form-control" name="year" value="{$album->year}">
     </div>
+    <div class="mb-3">
+        <label for="genre" class="form-label">Género</label>
+        <input type="text" class="form-control" name="genre" value="{$album->genre}">
+    </div>
+    <div class="mb-3">
+    <label for="length" class="form-label">Duración</label>
+    <input type="text" class="form-control" name="length" value="{$album->length}">
+</div>
         {/foreach}
     <button type="submit" class="btn btn-primary mt-2">Editar</button>
 </form>

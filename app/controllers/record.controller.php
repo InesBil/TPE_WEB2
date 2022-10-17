@@ -29,20 +29,43 @@ class RecordController{
     }
 
     function  showEditRecords($id){
-        $records = $this->model->getRegisterRecordsById2($id);
+        //$authHelper = new AuthHelper();
+       // $authHelper->checkLoggedIn();
+    
+        $records = $this->model->getRegisterById2($id);
         $this->view->showEditRecords($records);
     }
-
+    
     function insertEditRecords($id){
-        if((isset($_POST['records'])&&isset($_POST['producer'])&&isset($_POST['studio']))&&!empty($_POST['records'])&&!empty($_POST['producer'])&&!empty($_POST['studio'])){      
+        //$authHelper = new AuthHelper();
+        //$authHelper->checkLoggedIn();
+    
+        if((isset($_POST['records'])&&isset($_POST['producer'])&&isset($_POST['studio'])&&isset($_POST['img']))&&!empty($_POST['records'])&&!empty($_POST['producer'])&&!empty($_POST['studio'])&&!empty($_POST['img'])){      
             $records = $_POST['records'];
             $producer = $_POST['producer'];
-            $studio = $_POST['studio'];
-               
-            $this->model->insertEditRecords($records, $producer, $studio, $id);
-            
+            $studio = $_POST['studio'];            
+            $img = $_POST['img'];
+    
+            $this->model->insertEditRecords($records, $producer, $studio, $img, $id);
+            header("Location: " . BASE_URL. 'showRecords');
         }
     }
+
+    // function  showEditRecords($id){
+    //     $records = $this->model->getRegisterById2($id);
+    //     $this->view->showEditRecords($records);
+    // }
+
+    // function insertEditRecords($id){
+    //     if((isset($_POST['records'])&&isset($_POST['producer'])&&isset($_POST['studio']))&&!empty($_POST['records'])&&!empty($_POST['producer'])&&!empty($_POST['studio'])){      
+    //         $records = $_POST['records'];
+    //         $producer = $_POST['producer'];
+    //         $studio = $_POST['studio'];
+               
+    //         $this->model->insertEditRecords($records, $producer, $studio, $id);
+            
+    //     }
+    // }
     
     function deleteRecords($id) {
         $this->model->deleteRecordsById($id);

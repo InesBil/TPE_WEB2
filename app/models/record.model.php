@@ -23,33 +23,44 @@ class RecordModel {
         return $records;
     }
 
-    function getRegisterRecordsById($id){
+    function getRegisterById($id){
         $query = $this->db->prepare("SELECT * FROM records");
         $query->execute();
         $recordsRegister = $query->fetchAll(PDO::FETCH_OBJ);
         return $recordsRegister;
     }
 
-    public function getRegisterRecordsById2($id){
+    public function getRegisterById2($id){
         $query = $this->db->prepare("SELECT * FROM records where `fk_records_id`=$id");
         $query->execute();
         $recordsRegister = $query->fetchAll(PDO::FETCH_OBJ);
         return $recordsRegister;
     }
 
-    function insertRecords($records, $producer, $studio, $imagen=null) {
+    function insertRecords($records, $producer, $studio, $imagen = null) { 
         $pathImg = null;
-        if ($imagen)
+        if ($imagen){
         $pathImg = $this->uploadImage($imagen);
+        }
+        $query = $this->db->prepare("INSERT INTO records (records, producer, studio, img) VALUES (?, ?, ?, ?)");
+        $query->execute([$records, $producer, $studio, $pathImg]);
+         return $this->db->lastInsertId();
+     }
 
-        $query = $this->db->prepare("INSERT INTO records (img, records,producer, studio) VALUES (?, ?, ?, ?)");
-        $query->execute([$pathImg, $records, $producer, $studio]);
+    // function insertRecords($records, $producer, $studio, $imagen=null) {
+    //     $pathImg = null;
+    //     if ($imagen)
+    //     $pathImg = $this->uploadImage($imagen);
+
+    //     $query = $this->db->prepare("INSERT INTO records (img, records,producer, studio) VALUES (?, ?, ?, ?)");
+    //     $query->execute([$pathImg, $records, $producer, $studio]);
         
         
-        return $this->db->lastInsertId();
+    //     return $this->db->lastInsertId();
 
-        header("Location: " . BASE_URL. 'showRecords');
-    }
+    //     header("Location: " . BASE_URL. 'showRecords');
+    // }
+
 
     private function uploadImage($image){
         $target = 'images/' . uniqid() . '.jpg';

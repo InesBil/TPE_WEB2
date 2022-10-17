@@ -41,11 +41,10 @@ class DiscographyModel {
         return $target;
     }
 
-    public function insertEditAlbum($album, $year, $genre, $length, $studioOption, $id){        
+    public function insertEditAlbum($album, $year, $genre, $length,$studioOption,$id){        
         $query = $this->db->prepare("UPDATE `albums` SET album=?, year=?, genre=?, length=?, id_records_fk=? WHERE id=?");
         $query->execute([$album, $year, $genre, $length, $studioOption, $id]);
 
-        header("Location: " . BASE_URL);
     }
     
      function deleteDiscographyById($id) {

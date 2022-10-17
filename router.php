@@ -53,7 +53,7 @@ switch ($params[0]) {
     $recordController = new RecordController();
     $recordController->showEditRecords($id);  
     break;
-  case 'editRecord':
+  case 'editRecords':
     $id = $params[1];
     $recordController = new RecordController();
     $recordController ->insertEditRecords($id);  

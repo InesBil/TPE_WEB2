@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<!-- lista de tareas -->
+
 <table class="table table-hover">
 
     <thead>
@@ -22,8 +22,8 @@
                 <td>{$record->records}</td>
                 <td>{$record->producer}</td>
                 <td>{$record->studio}</td>
-                <td><a href='showEditRecords/{$record->id_records_fk}' type='button' class='btn btn-danger ml-auto'>Editar</a></td>
-                <td><a href='deleteRecords/{$record->id_records_fk}' type='button' class='btn btn-danger'>Borrar</a></td>                
+                <td><a href='showEditRecords/{$record->fk_records_id}' type='button' class='btn btn-danger ml-auto'>Editar</a></td>
+                <td><a href='deleteRecords/{$record->fk_records_id}' type='button' class='btn btn-danger'>Borrar</a></td>                
             </tr>
         {/foreach}
     </tbody>
