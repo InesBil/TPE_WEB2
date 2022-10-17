@@ -11,17 +11,16 @@
   </head>
   <body>
     <header>
-    {* <img src="images/rudanav.jpeg" style="width: 100%; height: 18rem; object-fit:cover;"> *}
+      <img src="images/arcticmonkeys.jpg" style="width: 100%; height:18rem; object-fit:cover;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" Style="margin-bottom: 2rem;">
     <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarColor01">
-      {* <img src="images/logo22.png" style="width: 3.5rem;"> *}
+      <div class="collapse navbar-collapse" id="navbarColor01">     
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">          
           <li class="nav-item">
             <a class="nav-link" href="showDiscography">Albums</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="showRecords">Discografía</a>
+            <a class="nav-link" href="showRecords">Discográfica</a>
           </li>
           <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                <ul class="navbar-nav">

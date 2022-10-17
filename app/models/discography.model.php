@@ -47,10 +47,8 @@ class DiscographyModel {
         $query->execute([$album, $year, $genre, $length, $$id_records_fk, $id]);
 
         header("Location: " . BASE_URL. 'showDiscography');
-}
-     /**
-      * Elimina una tarea dado su id.
-      */
+    }
+    
      function deleteDiscographyById($id) {
         $query = $this->db->prepare('DELETE FROM albums WHERE id = ?');
          $query->execute([$id]);
