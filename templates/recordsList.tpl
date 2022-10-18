@@ -16,7 +16,7 @@
             <tr>
                 <td> 
                 {if isset ($record->img)}
-                  <img src="images/{$record->img}" style="width:4rem;"/>
+                  <img src="images/{$record->img}" class="imgTable"/>
                 {/if}
                 </td>   
                 <td>{$record->records}</td>

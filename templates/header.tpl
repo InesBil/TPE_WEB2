@@ -13,8 +13,8 @@
   </head>
   <body>
     <header>
-      <img src="images/Arctic-Monkeys-2.jpg">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <img src="images/Arctic-Monkeys-2.jpg">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbarStyle" >
       <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarColor01">     
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">          
@@ -41,11 +41,11 @@
            </div>
         </ul>
           {if !isset($smarty.session.USER_ID)}
-          <a href="login"><button class="btn btn-outline-light" type="button" style="margin: 0 1rem;">Login</button></a>
+          <a href="login"><button class="btn btn-outline-light btnlogin" type="button" >Login</button></a>
           {else} 
-            <span><p style="color:#777777" class="user-select-none">User: {$smarty.session.USER_EMAIL}</p></span>
-          <a href="logout"><button class="btn btn-outline-light" type="button" style="margin: 0 1rem;">Logout</button></a>
-          {/if}  
+          <a href="logout"><button class="btn btn-outline-light btnlogin " type="button">Logout</button></a>
+          <span><p class="user-select-none userSession">User: {$smarty.session.USER_EMAIL}</p></span>
+         {/if}  
       </div>
     </div>
   </nav>

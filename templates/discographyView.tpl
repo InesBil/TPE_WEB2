@@ -18,7 +18,7 @@
             <tr>
                 <td> 
                 {if isset ($album->img)}
-                  <img src="images/{$album->img}" style="width:4rem;"/>
+                  <img src="images/{$album->img}" class="imgTable"/>
                 {/if}
                 </td>                
                 <td>{$album->album}</td>

@@ -4,7 +4,22 @@ header img {
     object-fit: cover;    
 }
 
-nav{
-    margin-bottom: 2rem;   
-   
+.navbarStyle{
+    margin-bottom: 2rem;
 }
+
+.btnlogin{
+    margin: 0 2rem;
+}
+.userSession{ 
+    color:#777777;
+}
+
+.imgTable{
+    width:3rem;
+}
+
+.imgDetail{
+    width:5rem;
+}
+
