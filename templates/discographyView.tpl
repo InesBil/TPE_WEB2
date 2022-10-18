@@ -1,6 +1,8 @@
 
 {include file="header.tpl"}
 
+<h1 class="title">Arctic Monkeys Discography</h1>
+
 <table class="table table-hover">
 
     <thead>
