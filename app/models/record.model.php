@@ -47,21 +47,6 @@ class RecordModel {
          return $this->db->lastInsertId();
      }
 
-    // function insertRecords($records, $producer, $studio, $imagen=null) {
-    //     $pathImg = null;
-    //     if ($imagen)
-    //     $pathImg = $this->uploadImage($imagen);
-
-    //     $query = $this->db->prepare("INSERT INTO records (img, records,producer, studio) VALUES (?, ?, ?, ?)");
-    //     $query->execute([$pathImg, $records, $producer, $studio]);
-        
-        
-    //     return $this->db->lastInsertId();
-
-    //     header("Location: " . BASE_URL. 'showRecords');
-    // }
-
-
     private function uploadImage($image){
         $target = 'images/' . uniqid() . '.jpg';
         move_uploaded_file($image, $target);
@@ -72,14 +57,12 @@ class RecordModel {
         
         $query = $this->db->prepare("UPDATE `records` SET records=?, producer=?, studio=? WHERE fk_records_id=?");
         $query->execute([$records, $producer, $studio, $id]);
-
-        header("Location: " . BASE_URL. 'showRecords');
     }
 
      function deleteRecordsById($id) {
-        $query = $this->db->prepare('DELETE FROM records WHERE fk_records_id= ?');
+        $query = $this->db->prepare('DELETE FROM records WHERE fk_records_id = ?');
         $query->execute([$id]);
-        
         header("Location: " . BASE_URL. 'showRecords');
     }
+
 }

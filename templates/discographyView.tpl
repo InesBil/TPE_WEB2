@@ -26,12 +26,15 @@
                 <td>{$album->genre}</td>
                 <td>{$album->length}</td>                
                 <td><a href="detail/{$album->fk_records_id}"class="text-decoration-none">{$album->records}</a></td>
-                <td><a href='deleteAlbum/{$album->id}' type='button' class='btn btn-danger ml-auto'>Borrar</a></td>
+                {if isset($smarty.session.USER_ID)}
                 <td><a href='showEditAlbum/{$album->id}' type='button' class='btn btn-danger ml-auto'>Editar</a></td>                
+                <td><a href='deleteAlbum/{$album->id}' type='button' class='btn btn-danger ml-auto'>Borrar</a></td>
+                {/if}
             </tr>
         {/foreach}
     </tbody>
   </table>
-
-{include file="formAlbum.tpl"}
+{if isset($smarty.session.USER_ID)}
+    {include file="formAlbum.tpl"}
+{/if}
 {include file="footer.tpl"}

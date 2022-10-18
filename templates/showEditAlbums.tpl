@@ -1,6 +1,5 @@
 {include file="header.tpl"}
 
-<!-- lista de tareas -->
 <table class="table table-hover">
 
     <thead>
@@ -25,7 +24,7 @@
     </tbody>
 </table>
 
-<h1>EDITAR</h1>
+<h5>Editar álbum</h5>
 
 <form action="editAlbum/{$album->id}" method="POST" class="my-4">
     <div class="mb-3">

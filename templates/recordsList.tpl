@@ -22,11 +22,15 @@
                 <td>{$record->records}</td>
                 <td>{$record->producer}</td>
                 <td>{$record->studio}</td>
+                {if isset($smarty.session.USER_ID)}
                 <td><a href='showEditRecords/{$record->fk_records_id}' type='button' class='btn btn-danger ml-auto'>Editar</a></td>
-                <td><a href='deleteRecords/{$record->fk_records_id}' type='button' class='btn btn-danger'>Borrar</a></td>                
+                <td><a href='deleteRecords/{$record->fk_records_id}' type='button' class='btn btn-danger'>Borrar</a></td> 
+                {/if}               
             </tr>
         {/foreach}
     </tbody>
 </table>
+{if isset($smarty.session.USER_ID)}
     {include file="formRecords.tpl"}
+{/if}
     {include file="footer.tpl"}

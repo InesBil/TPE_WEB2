@@ -1,0 +1,10 @@
+header img {
+    width: 100%; 
+    height:18rem;
+    object-fit: cover;    
+}
+
+nav{
+    margin-bottom: 2rem;   
+   
+}

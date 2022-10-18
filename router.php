@@ -67,26 +67,26 @@ switch ($params[0]) {
     $id = $params[1];
     $recordController = new RecordController();
     $recordController->deleteRecords($id);
-     break;
-     /*case 'login':
-        $authController = new AuthController();
-        $authController->showFormLogin();
-        break;
-    case 'validate':
-        $authController = new AuthController();
-        $authController->validateUser();
-        break;
-    case 'logout':
-        $authController = new AuthController();
-        $authController->logout();
-        break; */
-    case 'filter':
-        $id = $params[1];
-        $discographyController = new DiscographyController();
-        $discographyController->filterCategory($id);
-        break; 
-       
-    default:
-      echo('404 Page not found');
-      break;
+    break;
+  case 'login':
+    $authController = new AuthController();
+    $authController->showFormLogin();
+    break;
+  case 'validate':
+    $authController = new AuthController();
+    $authController->validateUser();
+    break;
+  case 'logout':
+    $authController = new AuthController();
+    $authController->logout();
+    break;
+  case 'filter':
+    $id = $params[1];
+    $discographyController = new DiscographyController();
+    $discographyController->filterCategory($id);
+    break; 
+     
+  default:
+    echo('404 Page not found');
+    break;
 }
