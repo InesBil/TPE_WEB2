@@ -28,7 +28,7 @@ class DiscographyController {
     
     public function showDetail($id){
         
-        $detail = $this->modelRecord->getRegisterById2($id);
+        $detail = $this->modelRecord->getRegisterById($id);
         $this->view->showDetail($detail);
 
     }
@@ -37,7 +37,7 @@ class DiscographyController {
         $authHelper = new AuthHelper();
         $authHelper->checkLoggedIn();
         
-        // if ((isset($_POST['album'])&&isset($_POST['year'])&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['id_records_fk']))&&!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['id_records_fk'])){
+        if ((isset($_POST['album'])&&isset($_POST['year'])&&isset($_POST['genre'])&&isset($_POST['length'])&&isset($_POST['id_records_fk']))&&(!empty($_POST['album'])&&!empty($_POST['year'])&&!empty($_POST['genre'])&&!empty($_POST['length'])&&!empty($_POST['id_records_fk']))){
             $album = $_POST['album'];
             $year = $_POST['year'];
             $genre = $_POST['genre'];
@@ -51,7 +51,7 @@ class DiscographyController {
             else{
                 $this->model->insertAlbum($album, $year, $genre, $length, $studioOption);
             }
-        //}
+        }
         header("Location: " . BASE_URL);
 
     }
@@ -60,7 +60,7 @@ class DiscographyController {
         $authHelper = new AuthHelper();
         $authHelper->checkLoggedIn();     
         $album = $this->model->getRegisterById($id);
-        $records = $this->modelRecord->getRegisterById($id);
+        $records = $this->modelRecord->getAllRecords();
         $this->view->showEditAlbum($album, $records);
     }
 
@@ -94,6 +94,7 @@ class DiscographyController {
         $this->view->showFilter($filters, $name, $records);
 
     }
+
 
 
 

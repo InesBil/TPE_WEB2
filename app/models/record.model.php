@@ -23,16 +23,10 @@ class RecordModel {
         return $records;
     }
 
-    function getRegisterById($id){
-        $query = $this->db->prepare("SELECT * FROM records");
-        $query->execute();
-        $recordsRegister = $query->fetchAll(PDO::FETCH_OBJ);
-        return $recordsRegister;
-    }
-
-    public function getRegisterById2($id){
-        $query = $this->db->prepare("SELECT * FROM records where `fk_records_id`=$id");
-        $query->execute();
+    
+    public function getRegisterById($id){
+        $query = $this->db->prepare("SELECT * FROM records where `fk_records_id`=?");
+        $query->execute([$id]);
         $recordsRegister = $query->fetchAll(PDO::FETCH_OBJ);
         return $recordsRegister;
     }

@@ -17,8 +17,8 @@ class DiscographyModel {
     }
 
     function getRegisterById($id){
-        $query = $this->db->prepare("SELECT * FROM albums where `id`=$id");
-        $query->execute();
+        $query = $this->db->prepare("SELECT * FROM albums where `id`=?");
+        $query->execute([$id]);
         $albumRegister = $query->fetchAll(PDO::FETCH_OBJ);
 
         return $albumRegister;
@@ -61,6 +61,7 @@ class DiscographyModel {
         return $filter;
         
     }
+
 }
 
 

@@ -36,7 +36,7 @@ class RecordController{
     function  showEditRecords($id){
         $authHelper = new AuthHelper();
         $authHelper->checkLoggedIn();   
-        $records = $this->model->getRegisterById2($id);
+        $records = $this->model->getRegisterById($id);
         $this->view->showEditRecords($records);
     }
     
